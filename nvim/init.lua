@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { "catppuccin/nvim",                  name = "catppuccin",   priority = 1000 },
+        { 'rose-pine/neovim',                 name = 'rose-pine' },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
@@ -70,7 +70,7 @@ require('lazy').setup({
     })
 
 -- Colors
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("rose-pine")
 
 -- Completion
 local cmp = require("cmp")
@@ -132,7 +132,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 require("mason").setup({})
 require("mason-lspconfig").setup({})
-local servers = { 'lua_ls', 'gopls', 'hls' }
+
+local servers = { 'lua_ls', 'gopls', 'hls', 'tsserver', 'pyright' }
 
 for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup {
