@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { 'rose-pine/neovim',                 name = 'rose-pine' },
+        { "morhetz/gruvbox",         priority = 1000 },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
@@ -31,6 +31,7 @@ require('lazy').setup({
         { 'nvim-tree/nvim-web-devicons' },
         { 'windwp/nvim-autopairs',            event = "InsertEnter", opts = {} },
         { 'christoomey/vim-tmux-navigator' },
+        { 'tpope/vim-dadbod' }
     },
 
     {
@@ -70,7 +71,8 @@ require('lazy').setup({
     })
 
 -- Colors
-vim.cmd.colorscheme("rose-pine")
+vim.g.gruvbox_contrast_dark = "hard"
+vim.cmd.colorscheme("gruvbox")
 
 -- Completion
 local cmp = require("cmp")
@@ -94,6 +96,9 @@ cmp.setup({
         { name = 'buffer' },
     })
 })
+
+-- Notify
+vim.notify = require("notify")
 
 -- LSP
 local on_attach = function(_, bufnr)
