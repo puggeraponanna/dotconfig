@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { "morhetz/gruvbox",         priority = 1000 },
+        { 'navarasu/onedark.nvim',            priority = 1000 },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
@@ -29,9 +29,9 @@ require('lazy').setup({
         { 'L3MON4D3/LuaSnip' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'nvim-tree/nvim-web-devicons' },
-        { 'windwp/nvim-autopairs',            event = "InsertEnter", opts = {} },
+        { 'windwp/nvim-autopairs',            event = "InsertEnter",         opts = {} },
         { 'christoomey/vim-tmux-navigator' },
-        { 'tpope/vim-dadbod' }
+        { "nvim-neorg/neorg",                 build = ":Neorg sync-parsers", }
     },
 
     {
@@ -71,8 +71,10 @@ require('lazy').setup({
     })
 
 -- Colors
-vim.g.gruvbox_contrast_dark = "hard"
-vim.cmd.colorscheme("gruvbox")
+require('onedark').setup {
+    style = 'darker'
+}
+require('onedark').load()
 
 -- Completion
 local cmp = require("cmp")
@@ -96,9 +98,6 @@ cmp.setup({
         { name = 'buffer' },
     })
 })
-
--- Notify
-vim.notify = require("notify")
 
 -- LSP
 local on_attach = function(_, bufnr)
@@ -164,6 +163,19 @@ require("nvim-treesitter.configs").setup {
     highlight = { enable = true },
 }
 
+require("neorg").setup {
+    load = {
+        ["core.defaults"] = {},
+        ["core.concealer"] = {},
+        ["core.dirman"] = {
+            config = {
+                workspaces = {
+                    notes = "~/Workspace/notes",
+                },
+            },
+        },
+    },
+}
 
 -- Other config
 vim.o.termguicolors = true
@@ -171,8 +183,8 @@ vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+--vim.o.updatetime = 250
+--vim.o.timeoutlen = 300
 
 vim.o.mouse = 'a'
 vim.wo.number = true
@@ -201,10 +213,9 @@ vim.keymap.set("n", "C-j", vim.cmd.TmuxNavigateDown)
 vim.keymap.set("n", "C-k", vim.cmd.TmuxNavigateUp)
 vim.keymap.set("n", "C-l", vim.cmd.TmuxNavigateRight)
 
-
-
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
+vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = "git status" })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "live grep" })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "find buffers" })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "help tags" })
