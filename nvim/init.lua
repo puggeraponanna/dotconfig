@@ -16,7 +16,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { 'navarasu/onedark.nvim',            priority = 1000 },
+        { "folke/tokyonight.nvim",            lazy = false,                  priority = 1000, },
+        { "folke/twilight.nvim" },
+        { "folke/zen-mode.nvim" },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
@@ -71,10 +73,7 @@ require('lazy').setup({
     })
 
 -- Colors
-require('onedark').setup {
-    style = 'darker'
-}
-require('onedark').load()
+vim.cmd.colorscheme('tokyonight-night')
 
 -- Completion
 local cmp = require("cmp")
@@ -154,6 +153,7 @@ for _, lsp in ipairs(servers) do
 end
 
 
+
 -- Lualine
 require("lualine").setup({})
 
@@ -212,6 +212,9 @@ vim.keymap.set("n", "C-h", vim.cmd.TmuxNavigateLeft)
 vim.keymap.set("n", "C-j", vim.cmd.TmuxNavigateDown)
 vim.keymap.set("n", "C-k", vim.cmd.TmuxNavigateUp)
 vim.keymap.set("n", "C-l", vim.cmd.TmuxNavigateRight)
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
