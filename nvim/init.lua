@@ -25,6 +25,7 @@ require('lazy').setup({
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-lualine/lualine.nvim' },
         { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
         { 'hrsh7th/cmp-cmdline' },
@@ -44,7 +45,8 @@ require('lazy').setup({
             }
         },
         { "lewis6991/gitsigns.nvim" },
-        { "numToStr/Comment.nvim" }
+        { "numToStr/Comment.nvim" },
+        { "puggeraponanna/rest.nvim" }
     },
     {
         performance = {
@@ -131,7 +133,6 @@ local on_attach = function(_, bufnr)
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
@@ -168,16 +169,11 @@ require("noice").setup({
     lsp = {
         progress = {
             enabled = true,
-            -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
-            -- See the section on formatting for more details on how to customize.
-            --- @type NoiceFormat|string
             format = "lsp_progress",
-            --- @type NoiceFormat|string
             format_done = "lsp_progress_done",
             throttle = 1000 / 30, -- frequency to update lsp progress message
             view = "mini",
         },
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
@@ -222,6 +218,11 @@ require("gitsigns").setup()
 
 -- Comment
 require('Comment').setup()
+
+-- Rest
+require("rest-nvim").setup({
+    commit = "3db3eed"
+})
 
 -- Other config
 vim.o.termguicolors = true
