@@ -16,9 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { "folke/tokyonight.nvim",            lazy = false,                  priority = 1000, },
-        { "folke/twilight.nvim" },
-        { "folke/zen-mode.nvim" },
+        { 'rose-pine/neovim',                 name = 'rose-pine' },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
@@ -26,16 +24,28 @@ require('lazy').setup({
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.2' },
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-lualine/lualine.nvim' },
-        { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-cmdline' },
+        { 'hrsh7th/nvim-cmp' },
         { 'L3MON4D3/LuaSnip' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'nvim-tree/nvim-web-devicons' },
         { 'windwp/nvim-autopairs',            event = "InsertEnter",         opts = {} },
         { 'christoomey/vim-tmux-navigator' },
-        { "nvim-neorg/neorg",                 build = ":Neorg sync-parsers", }
+        { "nvim-neorg/neorg",                 build = ":Neorg sync-parsers", },
+        {
+            "folke/noice.nvim",
+            event = "VeryLazy",
+            dependencies = {
+                "MunifTanjim/nui.nvim",
+                "rcarriga/nvim-notify",
+            }
+        },
+        { "lewis6991/gitsigns.nvim" },
+        { "numToStr/Comment.nvim" }
     },
-
     {
         performance = {
             rtp = {
@@ -73,7 +83,10 @@ require('lazy').setup({
     })
 
 -- Colors
-vim.cmd.colorscheme('tokyonight-night')
+require('rose-pine').setup({
+    variant = "auto"
+})
+vim.cmd.colorscheme('rose-pine')
 
 -- Completion
 local cmp = require("cmp")
@@ -116,8 +129,6 @@ local on_attach = function(_, bufnr)
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -152,7 +163,31 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-
+-- Noice
+require("noice").setup({
+    lsp = {
+        progress = {
+            enabled = true,
+            -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
+            -- See the section on formatting for more details on how to customize.
+            --- @type NoiceFormat|string
+            format = "lsp_progress",
+            --- @type NoiceFormat|string
+            format_done = "lsp_progress_done",
+            throttle = 1000 / 30, -- frequency to update lsp progress message
+            view = "mini",
+        },
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+        },
+    },
+    presets = {
+        lsp_doc_border = true, -- add a border to hover docs and signature help
+    },
+})
 
 -- Lualine
 require("lualine").setup({})
@@ -163,6 +198,7 @@ require("nvim-treesitter.configs").setup {
     highlight = { enable = true },
 }
 
+-- Neorg
 require("neorg").setup {
     load = {
         ["core.defaults"] = {},
@@ -176,6 +212,12 @@ require("neorg").setup {
         },
     },
 }
+
+-- Gitsigns
+require("gitsigns").setup()
+
+-- Comment
+require('Comment').setup()
 
 -- Other config
 vim.o.termguicolors = true
@@ -200,7 +242,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
+vim.opt.scrolloff = 8
 vim.opt.wrap = false
 
 vim.opt.colorcolumn = "80"
@@ -216,9 +258,12 @@ vim.keymap.set("n", "C-l", vim.cmd.TmuxNavigateRight)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+vim.keymap.set("n", "<A-j>", "ddp")
+vim.keymap.set("n", "<A-k>", "ddkP")
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
-vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = "git status" })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "live grep" })
+vim.keymap.set('n', '<leader>gt', builtin.git_status, { desc = "git status" })
+vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "live grep" })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "find buffers" })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "help tags" })
