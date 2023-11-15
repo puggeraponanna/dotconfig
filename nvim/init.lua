@@ -190,7 +190,11 @@ require("noice").setup({
 })
 
 -- Lualine
-require("lualine").setup({})
+require("lualine").setup({
+    tabline = {
+        lualine_a = { 'buffers' },
+    },
+})
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
@@ -260,6 +264,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "<A-j>", "ddp")
 vim.keymap.set("n", "<A-k>", "ddkP")
+
+vim.keymap.set("n", "<tab>", ":bn<CR>", { silent = true })
+vim.keymap.set("n", "<S-tab>", ":bp<CR>", { silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
