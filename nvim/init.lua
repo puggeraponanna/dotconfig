@@ -269,6 +269,8 @@ vim.keymap.set("n", "<A-k>", "ddkP")
 vim.keymap.set("n", "<tab>", ":bn<CR>", { silent = true })
 vim.keymap.set("n", "<S-tab>", ":bp<CR>", { silent = true })
 
+vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", { silent = true })
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
 vim.keymap.set('n', '<leader>gt', builtin.git_status, { desc = "git status" })
