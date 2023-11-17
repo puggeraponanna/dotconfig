@@ -252,6 +252,8 @@ vim.opt.wrap = false
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.clipboard = "unnamedplus"
+
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", ";", ":")
@@ -265,6 +267,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "<A-j>", "ddp")
 vim.keymap.set("n", "<A-k>", "ddkP")
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "<tab>", ":bn<CR>", { silent = true })
 vim.keymap.set("n", "<S-tab>", ":bp<CR>", { silent = true })
@@ -273,6 +277,8 @@ vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", { silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
+vim.keymap.set('n', '<leader>fa', "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+    { desc = "find files" })
 vim.keymap.set('n', '<leader>gt', builtin.git_status, { desc = "git status" })
 vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "live grep" })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "find buffers" })
