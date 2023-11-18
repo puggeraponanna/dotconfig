@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system {
@@ -79,6 +78,7 @@ require('rose-pine').setup({
 })
 vim.cmd.colorscheme('rose-pine')
 
+-- Neodev
 require('neodev').setup()
 
 -- Completion
@@ -94,7 +94,6 @@ cmp.setup({
         ['<S-tab>'] = cmp.mapping.select_prev_item(),
         ['<CR>'] = cmp.mapping.confirm { select = true },
     }),
-
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
@@ -105,13 +104,10 @@ cmp.setup({
 local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr })
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
-
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
     vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { buffer = bufnr })
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
-
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
-
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = bufnr })
     vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, { buffer = bufnr })
 end
@@ -142,13 +138,14 @@ end
 require("lualine").setup({
     options = {
         section_separators = "",
-        component_separators = ""
+        component_separators = "",
+        icons_enabled = false,
     },
     tabline = {
         lualine_a = { 'buffers' },
     },
 })
-
+--
 -- Treesitter
 require("nvim-treesitter.configs").setup {
     ensure_installed = { "lua", "vim", "vimdoc", "query", "go", "haskell", "python" },
@@ -183,29 +180,21 @@ require("rest-nvim").setup({
 
 -- Other config
 vim.opt.termguicolors = true
-
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
 vim.opt.mouse = 'a'
 vim.wo.number = true
-
 vim.opt.whichwrap = "<,>,h,l,[,]"
-
 vim.opt.hlsearch = false
-
 vim.opt.guicursor = "i:hor20"
 vim.opt.relativenumber = true
-
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
-
 vim.opt.colorcolumn = "80"
-
 vim.opt.clipboard = "unnamedplus"
 
 -- Keymaps
@@ -215,18 +204,14 @@ vim.keymap.set("n", "C-h", vim.cmd.TmuxNavigateLeft)
 vim.keymap.set("n", "C-j", vim.cmd.TmuxNavigateDown)
 vim.keymap.set("n", "C-k", vim.cmd.TmuxNavigateUp)
 vim.keymap.set("n", "C-l", vim.cmd.TmuxNavigateRight)
-
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
 vim.keymap.set("n", "<A-j>", "ddp")
 vim.keymap.set("n", "<A-k>", "ddkP")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
-
 vim.keymap.set("n", "<tab>", ":bn<CR>", { silent = true })
 vim.keymap.set("n", "<S-tab>", ":bp<CR>", { silent = true })
-
 vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", { silent = true })
 
 local builtin = require('telescope.builtin')
