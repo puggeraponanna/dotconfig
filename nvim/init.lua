@@ -74,7 +74,11 @@ require('lazy').setup({
 
 -- Colors
 require('rose-pine').setup({
-    variant = "auto"
+    variant = "moon",
+    disable_italics = true,
+    highlight_groups = {
+        Comment = { italic = true }
+    }
 })
 vim.cmd.colorscheme('rose-pine')
 
@@ -139,13 +143,12 @@ require("lualine").setup({
     options = {
         section_separators = "",
         component_separators = "",
-        icons_enabled = false,
     },
     tabline = {
         lualine_a = { 'buffers' },
     },
 })
---
+
 -- Treesitter
 require("nvim-treesitter.configs").setup {
     ensure_installed = { "lua", "vim", "vimdoc", "query", "go", "haskell", "python" },
