@@ -24,8 +24,9 @@ require('lazy').setup({
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.2' },
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-lualine/lualine.nvim' },
-        { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-path' },
         { 'L3MON4D3/LuaSnip' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'nvim-tree/nvim-web-devicons' },
@@ -101,6 +102,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'path' },
     })
 })
 
@@ -183,6 +185,8 @@ require("rest-nvim").setup({
 
 -- Other config
 vim.opt.termguicolors = true
+vim.opt.list = true
+vim.opt.listchars = { eol = "\\u23CE" }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.mouse = 'a'
