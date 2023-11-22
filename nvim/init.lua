@@ -35,7 +35,7 @@ require('lazy').setup({
         { "nvim-neorg/neorg",                 build = ":Neorg sync-parsers", },
         { "lewis6991/gitsigns.nvim" },
         { "numToStr/Comment.nvim" },
-        { "puggeraponanna/rest.nvim" },
+        { "puggeraponanna/rest.nvim",         commit = "3db3eed" },
     },
     {
         performance = {
@@ -180,13 +180,13 @@ require('Comment').setup()
 
 -- Rest
 require("rest-nvim").setup({
-    commit = "3db3eed"
+    result_split_in_place = true
 })
 
 -- Other config
 vim.opt.termguicolors = true
 vim.opt.list = true
-vim.opt.listchars = { eol = "\\u23CE" }
+vim.opt.listchars = { eol = "\\u23CE", tab = "  " }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.mouse = 'a'
@@ -201,7 +201,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
-vim.opt.colorcolumn = "80"
 vim.opt.clipboard = "unnamedplus"
 
 -- Keymaps
