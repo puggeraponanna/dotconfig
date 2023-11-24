@@ -15,7 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { 'rose-pine/neovim',                 name = 'rose-pine' },
+        { "catppuccin/nvim",                  name = "catppuccin",           priority = 1000 },
         { 'folke/neodev.nvim' },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
@@ -74,14 +74,10 @@ require('lazy').setup({
     })
 
 -- Colors
-require('rose-pine').setup({
-    variant = "moon",
-    disable_italics = true,
-    highlight_groups = {
-        Comment = { italic = true }
-    }
+require("catppuccin").setup({
+    transparent_background = true,
 })
-vim.cmd.colorscheme('rose-pine')
+vim.cmd.colorscheme('catppuccin')
 
 -- Neodev
 require('neodev').setup()
