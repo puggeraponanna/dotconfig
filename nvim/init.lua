@@ -15,7 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-        { "catppuccin/nvim",                  name = "catppuccin",           priority = 1000 },
         { 'folke/neodev.nvim' },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
@@ -37,6 +36,8 @@ require('lazy').setup({
         { "lewis6991/gitsigns.nvim" },
         { "numToStr/Comment.nvim" },
         { "puggeraponanna/rest.nvim",         commit = "3db3eed" },
+        { "navarasu/onedark.nvim" },
+        { "norcalli/nvim-colorizer.lua" }
     },
     {
         performance = {
@@ -75,13 +76,13 @@ require('lazy').setup({
     })
 
 -- Colors
-require("catppuccin").setup({
-    transparent_background = true,
-    styles = {
-        conditionals = {},
-    }
+require("onedark").setup({
+    style = "deep"
 })
-vim.cmd.colorscheme('catppuccin')
+vim.cmd.colorscheme('onedark')
+
+
+require('colorizer').setup()
 
 -- Neodev
 require('neodev').setup()
