@@ -76,6 +76,9 @@ require('lazy').setup({
 -- Colors
 require("catppuccin").setup({
     transparent_background = true,
+    styles = {
+        conditionals = {},
+    }
 })
 vim.cmd.colorscheme('catppuccin')
 
