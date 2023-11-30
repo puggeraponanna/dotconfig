@@ -19,6 +19,7 @@ require('lazy').setup({
         { 'folke/neodev.nvim' },
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
+        { 'puggeraponanna/null-ls.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
         { 'nvim-treesitter/nvim-treesitter',  build = ':TSUpdate' },
         { 'nvim-telescope/telescope.nvim',    tag = '0.1.2' },
@@ -123,6 +124,13 @@ require("mason").setup({})
 require("mason-lspconfig").setup({})
 
 local servers = { 'lua_ls', 'gopls', 'hls', 'pyright' }
+
+local builtins = require("null-ls").builtins
+require("null-ls").setup({
+    sources = {
+        builtins.formatting.autopep8
+    }
+})
 
 for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup {
