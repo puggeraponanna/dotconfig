@@ -36,7 +36,7 @@ require('lazy').setup({
         { "lewis6991/gitsigns.nvim" },
         { "numToStr/Comment.nvim" },
         { "puggeraponanna/rest.nvim",         commit = "3db3eed" },
-        { "navarasu/onedark.nvim" },
+        { 'rose-pine/neovim', name = 'rose-pine'},
         { "norcalli/nvim-colorizer.lua" }
     },
     {
@@ -76,13 +76,7 @@ require('lazy').setup({
     })
 
 -- Colors
-require("onedark").setup({
-    lualine = {
-        transparent = true
-    }
-})
-vim.cmd.colorscheme('onedark')
-
+vim.cmd.colorscheme('rose-pine')
 
 require('colorizer').setup()
 
@@ -152,23 +146,23 @@ end
 
 -- Lualine
 require("lualine").setup({
-    options = {
-        section_separators = "",
-        component_separators = "|"
-    },
-    sections = {
-        lualine_a = {
-            { 'mode', separator = { left = '', right = '' }, right_padding = 2 },
-        },
-        lualine_z = {
-            { 'location', separator = { left = '', right = '' }, left_padding = 2 },
-        },
-    },
-    tabline = {
-        lualine_a = {
-            { 'buffers', separator = { left = "", right = "" } },
-        },
-    },
+    -- options = {
+    --     section_separators = "",
+    --     component_separators = "|"
+    -- },
+    -- sections = {
+    --     lualine_a = {
+    --         { 'mode', separator = { left = '', right = '' }, right_padding = 2 },
+    --     },
+    --     lualine_z = {
+    --         { 'location', separator = { left = '', right = '' }, left_padding = 2 },
+    --     },
+    -- },
+    -- tabline = {
+    --     lualine_a = {
+    --         { 'buffers', separator = { left = "", right = "" } },
+    --     },
+    -- },
 })
 
 -- Treesitter
