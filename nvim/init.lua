@@ -152,7 +152,17 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Lualine
-require("lualine").setup({})
+require("lualine").setup({
+    options = {
+        section_separators = "",
+        component_separators = "|"
+    },
+    tabline = {
+        lualine_a = {
+            { 'buffers', separator = { left = "", right = "" } },
+        },
+    }
+})
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
