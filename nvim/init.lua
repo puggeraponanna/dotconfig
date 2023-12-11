@@ -36,7 +36,7 @@ require('lazy').setup({
         { "lewis6991/gitsigns.nvim" },
         { "numToStr/Comment.nvim" },
         { "puggeraponanna/rest.nvim",         commit = "3db3eed" },
-        { 'rose-pine/neovim', name = 'rose-pine'},
+        { 'rose-pine/neovim',                 name = 'rose-pine' },
         { "norcalli/nvim-colorizer.lua" }
     },
     {
@@ -75,7 +75,14 @@ require('lazy').setup({
         },
     })
 
+
 -- Colors
+require("rose-pine").setup({
+    disable_italics = true,
+    highlight_groups = {
+        Comment = { italic = true }
+    }
+})
 vim.cmd.colorscheme('rose-pine')
 
 require('colorizer').setup()
@@ -145,25 +152,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Lualine
-require("lualine").setup({
-    -- options = {
-    --     section_separators = "",
-    --     component_separators = "|"
-    -- },
-    -- sections = {
-    --     lualine_a = {
-    --         { 'mode', separator = { left = '', right = '' }, right_padding = 2 },
-    --     },
-    --     lualine_z = {
-    --         { 'location', separator = { left = '', right = '' }, left_padding = 2 },
-    --     },
-    -- },
-    -- tabline = {
-    --     lualine_a = {
-    --         { 'buffers', separator = { left = "", right = "" } },
-    --     },
-    -- },
-})
+require("lualine").setup({})
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
