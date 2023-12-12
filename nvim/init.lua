@@ -37,7 +37,12 @@ require('lazy').setup({
         { "numToStr/Comment.nvim" },
         { "puggeraponanna/rest.nvim",         commit = "3db3eed" },
         { 'rose-pine/neovim',                 name = 'rose-pine' },
-        { "norcalli/nvim-colorizer.lua" }
+        { "norcalli/nvim-colorizer.lua" },
+        {
+            "folke/noice.nvim",
+            event = "VeryLazy",
+            dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }
+        }
     },
     {
         performance = {
@@ -196,6 +201,23 @@ require("rest-nvim").setup({
     result_split_in_place = true
 })
 
+-- Noice
+require("noice").setup({
+    lsp = {
+        override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+        },
+    },
+    presets = {
+        bottom_search = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = false,
+    },
+})
+
 -- Other config
 vim.opt.termguicolors = true
 vim.opt.list = true
@@ -215,7 +237,8 @@ vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
-
+vim.opt.colorcolumn = "120"
+vim.opt.cursorline = true
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", ";", ":")
