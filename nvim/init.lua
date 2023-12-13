@@ -32,12 +32,12 @@ require('lazy').setup({
         { 'nvim-tree/nvim-web-devicons' },
         { 'windwp/nvim-autopairs',            event = "InsertEnter",         opts = {} },
         { 'christoomey/vim-tmux-navigator' },
-        { "nvim-neorg/neorg",                 build = ":Neorg sync-parsers", },
-        { "lewis6991/gitsigns.nvim" },
-        { "numToStr/Comment.nvim" },
-        { "puggeraponanna/rest.nvim",         commit = "3db3eed" },
-        { 'rose-pine/neovim',                 name = 'rose-pine' },
-        { "norcalli/nvim-colorizer.lua" },
+        { 'nvim-neorg/neorg',                 build = ":Neorg sync-parsers", },
+        { 'lewis6991/gitsigns.nvim' },
+        { 'numToStr/Comment.nvim' },
+        { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
+        { 'norcalli/nvim-colorizer.lua' },
+        { 'rebelot/kanagawa.nvim' },
         {
             "folke/noice.nvim",
             event = "VeryLazy",
@@ -82,13 +82,7 @@ require('lazy').setup({
 
 
 -- Colors
-require("rose-pine").setup({
-    disable_italics = true,
-    highlight_groups = {
-        Comment = { italic = true }
-    }
-})
-vim.cmd.colorscheme('rose-pine')
+vim.cmd.colorscheme("kanagawa")
 
 require('colorizer').setup()
 
