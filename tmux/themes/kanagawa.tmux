@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-set -g mode-style "fg=#7E9CD8,bg=#3b4261"
+set -g mode-style "fg=#7E9CD8,bg=#1F1F28"
 
-set -g message-style "fg=#7E9CD8,bg=#3b4261"
-set -g message-command-style "fg=#7E9CD8,bg=#3b4261"
+set -g message-style "fg=#7E9CD8,bg=#1F1F28"
+set -g message-command-style "fg=#7E9CD8,bg=#1F1F28"
 
-set -g pane-border-style "fg=#3b4261"
+set -g pane-border-style "fg=#1F1F28"
 set -g pane-active-border-style "fg=#7E9CD8"
 
 set -g status "on"
