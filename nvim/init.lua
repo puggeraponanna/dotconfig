@@ -36,7 +36,6 @@ require('lazy').setup({
         { 'lewis6991/gitsigns.nvim' },
         { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
-        { 'norcalli/nvim-colorizer.lua' },
         { 'rebelot/kanagawa.nvim' },
         {
             "folke/noice.nvim",
@@ -82,9 +81,12 @@ require('lazy').setup({
 
 
 -- Colors
+require("kanagawa").setup({
+    keywordStyle = { italic = false },
+    transparent = true
+})
 vim.cmd.colorscheme("kanagawa")
 
-require('colorizer').setup()
 
 -- Neodev
 require('neodev').setup()
@@ -185,7 +187,17 @@ require("neorg").setup {
 }
 
 -- Gitsigns
-require("gitsigns").setup()
+require("gitsigns").setup {
+    on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+        end
+        map('n', '<leader>gd', gs.diffthis)
+    end
+}
 
 -- Comment
 require('Comment').setup()
@@ -216,6 +228,7 @@ require("noice").setup({
 vim.opt.termguicolors = true
 vim.opt.list = true
 vim.opt.listchars = { eol = "\\u23CE", tab = "  " }
+vim.opt.fillchars = vim.opt.fillchars + 'diff: '
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.mouse = 'a'
@@ -231,7 +244,6 @@ vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.colorcolumn = "120"
 vim.opt.cursorline = true
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
