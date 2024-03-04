@@ -27,6 +27,7 @@ require('lazy').setup({
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-buffer' },
         { 'L3MON4D3/LuaSnip' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'nvim-tree/nvim-web-devicons' },
@@ -83,10 +84,9 @@ require('lazy').setup({
 -- Colors
 require("kanagawa").setup({
     keywordStyle = { italic = false },
-    transparent = true
+    transparent = true,
 })
 vim.cmd.colorscheme("kanagawa")
-
 
 -- Neodev
 require('neodev').setup()
@@ -108,6 +108,7 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = "buffer" }
     })
 })
 
@@ -245,6 +246,7 @@ vim.opt.scrolloff = 8
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
+vim.opt.colorcolumn = '100'
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", ";", ":")
