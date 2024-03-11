@@ -38,11 +38,12 @@ require('lazy').setup({
         { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
         { 'rebelot/kanagawa.nvim' },
+        { "rose-pine/neovim",                 name = "rose-pine" },
         {
             "folke/noice.nvim",
             event = "VeryLazy",
             dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }
-        }
+        },
     },
     {
         performance = {
@@ -81,12 +82,12 @@ require('lazy').setup({
     })
 
 
--- Colors
-require("kanagawa").setup({
-    keywordStyle = { italic = false },
-    transparent = true,
+require("rose-pine").setup({
+    styles = {
+        transparency = true,
+    }
 })
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("rose-pine")
 
 -- Neodev
 require('neodev').setup()
@@ -200,12 +201,8 @@ require("gitsigns").setup {
     end
 }
 
--- Comment
-require('Comment').setup()
-
--- Rest
-require("rest-nvim").setup({
-    result_split_in_place = true
+require("notify").setup({
+    background_colour = "#000000"
 })
 
 -- Noice
@@ -223,6 +220,14 @@ require("noice").setup({
         inc_rename = false,
         lsp_doc_border = false,
     },
+})
+
+-- Comment
+require('Comment').setup()
+
+-- Rest
+require("rest-nvim").setup({
+    result_split_in_place = true
 })
 
 -- Other config
@@ -245,7 +250,6 @@ vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.cursorline = true
 vim.opt.colorcolumn = '100'
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
