@@ -2,36 +2,48 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 
 local config = {}
+config.set_environment_variables = {
+    EDITOR = 'nvim',
+    PATH = '/opt/homebrew/bin:' .. os.getenv('PATH')
+}
 config.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.font = wezterm.font 'CaskaydiaCove Nerd Font'
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.font_size = 16
+config.font_size = 17
 config.color_scheme = 'rose-pine'
 config.window_background_image = '/Users/ponanna/Pictures/rose_pine_contourline.png'
 config.window_background_image_hsb = {
     brightness = 0.02
 }
+config.window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
+}
 config.show_new_tab_button_in_tab_bar = false
 config.colors = {
     tab_bar = {
         background = 'rgba(0,0,0,0)',
-        -- active_tab = {
-        --             bg_color = '#c8c093',
-        --             fg_color = '#1f1f28',
-        --         },
-        --         inactive_tab = {
-        --             bg_color = '#1f1f28',
-        --             fg_color = '#c8c093',
-        --         },
+        active_tab = {
+            bg_color = '#9ccfd8',
+            fg_color = '#1f1d2e',
+        },
+        inactive_tab = {
+            bg_color = '#1f1d2e',
+            fg_color = '#9ccfd8',
+        },
     },
 }
 config.keys = {
     { key = 'l', mods = 'LEADER', action = wezterm.action.ShowLauncher },
     { key = 'h', mods = 'LEADER', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     { key = 'v', mods = 'LEADER', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { key = 'w', mods = 'LEADER', action = wezterm.action.PaneSelect },
+    { key = 's', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
     {
-        key = 's',
+        key = 'e',
         mods = 'LEADER',
         action = wezterm.action_callback(function(window, pane)
             local workspaces = DirLookup("~/Workspace")
@@ -51,7 +63,7 @@ config.keys = {
                                         spawn = {
                                             label = label,
                                             cwd = id,
-                                            args = { "vim", "." }
+                                            args = { "nvim", "." }
                                         },
                                     },
                                     inner_pane

@@ -37,7 +37,7 @@ require('lazy').setup({
         { 'lewis6991/gitsigns.nvim' },
         { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
-        { 'rebelot/kanagawa.nvim' },
+        { 'norcalli/nvim-colorizer.lua' },
         { "rose-pine/neovim",                 name = "rose-pine" },
         {
             "folke/noice.nvim",
@@ -80,6 +80,7 @@ require('lazy').setup({
             },
         },
     })
+
 
 
 require("rose-pine").setup({
@@ -185,6 +186,7 @@ require("neorg").setup {
                 },
             },
         },
+        ["core.ui"] = {},
     },
 }
 
@@ -230,8 +232,10 @@ require("rest-nvim").setup({
     result_split_in_place = true
 })
 
--- Other config
 vim.opt.termguicolors = true
+require('colorizer').setup()
+
+-- Other config
 vim.opt.list = true
 vim.opt.listchars = { eol = "\\u23CE", tab = "  " }
 vim.opt.fillchars = vim.opt.fillchars + 'diff: '
