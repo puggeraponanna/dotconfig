@@ -38,7 +38,8 @@ require('lazy').setup({
         { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
         { 'norcalli/nvim-colorizer.lua' },
-        { "rose-pine/neovim",                 name = "rose-pine" },
+        { "navarasu/onedark.nvim" },
+        { "nvim-tree/nvim-tree.lua",          lazy = false },
         {
             "folke/noice.nvim",
             event = "VeryLazy",
@@ -81,14 +82,15 @@ require('lazy').setup({
         },
     })
 
-
-
-require("rose-pine").setup({
-    styles = {
-        transparency = true,
-    }
+-- Colorscheme
+require("onedark").setup({
+    styles = "darker",
+    transparent = true,
+    lualine = {
+        transparent = true,
+    },
 })
-vim.cmd.colorscheme("rose-pine")
+require("onedark").load()
 
 -- Neodev
 require('neodev').setup()
@@ -127,16 +129,19 @@ local on_attach = function(_, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+local servers = { 'lua_ls', 'gopls', 'hls', 'pyright', 'rust_analyzer', 'texlab' }
 
 require("mason").setup({})
-require("mason-lspconfig").setup({})
-
-local servers = { 'lua_ls', 'gopls', 'hls', 'pyright' }
+require("mason-lspconfig").setup({
+    ensure_installed = servers
+})
 
 local builtins = require("null-ls").builtins
 require("null-ls").setup({
     sources = {
-        builtins.formatting.autopep8
+        builtins.formatting.autopep8,
+        builtins.formatting.rustfmt,
+        builtins.formatting.gofmt,
     }
 })
 
@@ -170,7 +175,7 @@ require("lualine").setup({
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = { "lua", "vim", "vimdoc", "query", "go", "haskell", "python" },
+    ensure_installed = { "lua", "vim", "vimdoc", "query", "go", "haskell", "python", "rust" },
     highlight = { enable = true },
 }
 
@@ -203,6 +208,7 @@ require("gitsigns").setup {
     end
 }
 
+-- Notify
 require("notify").setup({
     background_colour = "#000000"
 })
@@ -232,6 +238,13 @@ require("rest-nvim").setup({
     result_split_in_place = true
 })
 
+-- Nvim Tree
+require("nvim-tree").setup({
+    update_focused_file = {
+        enable = true,
+    }
+})
+
 vim.opt.termguicolors = true
 require('colorizer').setup()
 
@@ -254,7 +267,8 @@ vim.opt.expandtab = true
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.colorcolumn = '100'
+-- vim.opt.colorcolumn = '100'
+
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", ";", ":")
@@ -271,6 +285,7 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<tab>", ":bn<CR>", { silent = true })
 vim.keymap.set("n", "<S-tab>", ":bp<CR>", { silent = true })
 vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", { silent = true })
+vim.keymap.set("n", "<leader>nt", ":NvimTreeToggle<cr>", { silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>fa', "<cmd> Telescope find_files hidden=true <CR>")

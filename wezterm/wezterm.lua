@@ -11,10 +11,10 @@ config.font = wezterm.font 'CaskaydiaCove Nerd Font'
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.font_size = 17
-config.color_scheme = 'rose-pine'
-config.window_background_image = '/Users/ponanna/Pictures/rose_pine_contourline.png'
+config.color_scheme = 'OneDark (base16)'
+config.window_background_image = '/Users/ponanna/Pictures/pxfuel.jpg'
 config.window_background_image_hsb = {
-    brightness = 0.02
+    brightness = 0.04
 }
 config.window_padding = {
     left = 0,
@@ -27,12 +27,12 @@ config.colors = {
     tab_bar = {
         background = 'rgba(0,0,0,0)',
         active_tab = {
-            bg_color = '#9ccfd8',
-            fg_color = '#1f1d2e',
+            bg_color = '#98c379',
+            fg_color = '#282c34',
         },
         inactive_tab = {
-            bg_color = '#1f1d2e',
-            fg_color = '#9ccfd8',
+            bg_color = 'rgba(0,0,0,0)',
+            fg_color = '#abb2bf',
         },
     },
 }
