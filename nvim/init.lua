@@ -38,7 +38,7 @@ require('lazy').setup({
         { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
         { 'norcalli/nvim-colorizer.lua' },
-        { "navarasu/onedark.nvim" },
+        { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
         { "nvim-tree/nvim-tree.lua",          lazy = false },
         {
             "folke/noice.nvim",
@@ -83,14 +83,10 @@ require('lazy').setup({
     })
 
 -- Colorscheme
-require("onedark").setup({
-    styles = "darker",
-    transparent = true,
-    lualine = {
-        transparent = true,
-    },
+require("catppuccin").setup({
+    transparent_background = true,
 })
-require("onedark").load()
+vim.cmd.colorscheme("catppuccin-frappe")
 
 -- Neodev
 require('neodev').setup()

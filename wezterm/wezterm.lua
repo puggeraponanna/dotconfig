@@ -7,15 +7,10 @@ config.set_environment_variables = {
     PATH = '/opt/homebrew/bin:' .. os.getenv('PATH')
 }
 config.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 1000 }
-config.font = wezterm.font 'CaskaydiaCove Nerd Font'
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.font_size = 17
-config.color_scheme = 'OneDark (base16)'
-config.window_background_image = '/Users/ponanna/Pictures/pxfuel.jpg'
-config.window_background_image_hsb = {
-    brightness = 0.04
-}
+config.font_size = 14
+config.color_scheme = 'Catppuccin Mocha'
 config.window_padding = {
     left = 0,
     right = 0,
@@ -24,15 +19,16 @@ config.window_padding = {
 }
 config.show_new_tab_button_in_tab_bar = false
 config.colors = {
+    background = '#202020',
     tab_bar = {
         background = 'rgba(0,0,0,0)',
         active_tab = {
-            bg_color = '#98c379',
-            fg_color = '#282c34',
+            bg_color = '#89b4fa',
+            fg_color = '#1e1e2e',
         },
         inactive_tab = {
-            bg_color = 'rgba(0,0,0,0)',
-            fg_color = '#abb2bf',
+            bg_color = '#313244',
+            fg_color = '#89b4fa',
         },
     },
 }
