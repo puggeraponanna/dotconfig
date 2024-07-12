@@ -86,7 +86,7 @@ require('lazy').setup({
 require("catppuccin").setup({
     transparent_background = true,
 })
-vim.cmd.colorscheme("catppuccin-frappe")
+vim.cmd.colorscheme("catppuccin-mocha")
 
 -- Neodev
 require('neodev').setup()

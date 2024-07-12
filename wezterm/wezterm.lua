@@ -19,16 +19,11 @@ config.window_padding = {
 }
 config.show_new_tab_button_in_tab_bar = false
 config.colors = {
-    background = '#202020',
     tab_bar = {
         background = 'rgba(0,0,0,0)',
-        active_tab = {
-            bg_color = '#89b4fa',
-            fg_color = '#1e1e2e',
-        },
         inactive_tab = {
-            bg_color = '#313244',
-            fg_color = '#89b4fa',
+            bg_color = 'rgba(0,0,0,0)',
+            fg_color = '#ffffff'
         },
     },
 }

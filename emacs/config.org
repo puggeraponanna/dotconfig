@@ -1,0 +1,181 @@
+#+TITLE:Emacs config
+#+AUTHOR:Ponanna
+#+DESCRIPTION:Emacs config
+#+STARTUP: showeverything
+#+OPTIONS: toc:2
+
+* Table of Contents :toc:
+- [[#programs-to-load-first][Programs to load first]]
+  - [[#package-manager][Package Manager]]
+  - [[#load-evil-mode][Load evil mode]]
+- [[#general-key-bindings][General key bindings]]
+- [[#gui-tweaks][GUI Tweaks]]
+  - [[#disable-menubar-toolbar-scrollbar-startup-screen-etc][Disable Menubar, Toolbar, Scrollbar, Startup Screen etc]]
+  - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
+  - [[#cursor][Cursor]]
+- [[#fonts][Fonts]]
+- [[#which-key][Which Key]]
+- [[#org-mode][Org Mode]]
+  - [[#enable-table-of-contents][Enable Table Of Contents]]
+  - [[#org-modern][Org Modern]]
+  - [[#disable-electric-indent][Disable Electric Indent]]
+  - [[#org-indent-mode][Org Indent Mode]]
+  - [[#org-tempo][Org Tempo]]
+- [[#theme][Theme]]
+- [[#modeline][Modeline]]
+
+* Programs to load first
+** Package Manager
+#+begin_src emacs-lisp
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+#+end_src
+
+** Load evil mode
+#+begin_src emacs-lisp
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
+
+(require 'evil)
+(evil-mode 1)
+#+end_src
+
+* General key bindings
+#+begin_src emacs-lisp
+;; Install general
+(unless (package-installed-p 'general)
+  (package-install 'general))
+
+;; Load and configure general
+(require 'general)
+(general-evil-setup)
+
+;; setup 'SPC' as the leader key
+(general-create-definer dt/leader-keys
+  :states '(normal insert visual emacs)
+  :keymaps 'override
+  :prefix "SPC"
+  :global-prefix "M-SPC")
+
+(dt/leader-keys
+  "ff" '(find-file :wk "Find File")
+  "fc" '(lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
+
+(dt/leader-keys
+  "b" '(:ignore t :wk "buffer")
+  "bb" '(switch-to-buffer :wk "Switch Buffer")
+  "bl" '(ibuffer :wk "List Buffers")
+  "bp" '(previous-buffer :wk "Previous Buffer")
+  "bn" '(next-buffer :wk "Next Buffer")
+  "bd" '(kill-this-buffer :wk "Delete Buffer")
+  "br" '(revert-buffer :wk "Reload Buffer"))
+#+end_src
+
+* GUI Tweaks
+** Disable Menubar, Toolbar, Scrollbar, Startup Screen etc
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq inhibit-startup-screen t)
+#+end_src
+
+** Display Line Numbers and Truncated Lines
+#+begin_src emacs-lisp
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode t)
+#+end_src
+
+** Cursor
+#+begin_src emacs-lisp
+(blink-cursor-mode 0)
+#+end_src
+
+* Fonts
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil
+  :font "FiraCode Nerd Font")
+(set-face-attribute 'fixed-pitch nil
+  :font "FiraCode Nerd Font")
+(set-face-attribute 'variable-pitch nil
+  :font "Helvetica")
+(set-face-attribute 'font-lock-comment-face nil
+  :font "Victor Mono"
+  :slant 'italic)
+#+end_src
+
+* Which Key
+#+begin_src emacs-lisp
+;; Install which-key
+(unless (package-installed-p 'which-key)
+  (package-install 'which-key))
+
+;; Load and configure which-key
+(require 'which-key)
+(which-key-mode)
+#+end_src
+
+* Org Mode
+** Enable Table Of Contents
+#+begin_src emacs-lisp
+;; Install toc-org
+(unless (package-installed-p 'toc-org)
+  (package-install 'toc-org))
+
+;; Load and configure toc-org
+(require 'toc-org)
+(add-hook 'org-mode-hook 'toc-org-mode)
+#+end_src
+
+** Org Modern
+#+begin_src emacs-lisp
+;; Install org-modern
+(unless (package-installed-p 'org-modern)
+  (package-install 'org-modern))
+
+;; Load and Configure org-modern
+(add-hook 'org-mode-hook #'org-modern-mode)
+(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+(set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+(custom-set-variables '(org-modern-table nil))
+#+end_src
+
+** Disable Electric Indent
+#+begin_src emacs-lisp
+(electric-indent-mode -1)
+#+end_src
+
+** Org Indent Mode
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+#+end_src
+
+** Org Tempo
+#+begin_src emacs-lisp
+(require 'org-tempo)
+#+end_src
+
+* Theme
+#+begin_src emacs-lisp
+;; Install doom-themes
+(unless (package-installed-p 'doom-themes)
+  (package-install 'doom-themes))
+
+;; Configure doom-theme
+(load-theme 'doom-one-light t)
+#+end_src
+
+* Modeline
+#+begin_src emacs-lisp
+;;Install doom-modeline
+(unless (package-installed-p 'doom-modeline)
+  (package-install 'doom-modeline))
+
+;;Load and configure doom-modeline
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+#+end_src
