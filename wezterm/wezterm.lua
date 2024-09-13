@@ -10,7 +10,7 @@ config.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.font_size = 14
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'rose-pine-moon'
 config.window_padding = {
     left = 0,
     right = 0,
@@ -23,8 +23,12 @@ config.colors = {
         background = 'rgba(0,0,0,0)',
         inactive_tab = {
             bg_color = 'rgba(0,0,0,0)',
-            fg_color = '#ffffff'
+            fg_color = '#e0def4'
         },
+        active_tab = {
+            bg_color = '#ea9a97',
+            fg_color = '#393552'
+        }
     },
 }
 config.keys = {
@@ -89,5 +93,15 @@ function DirLookup(dir)
     p:close()
     return t
 end
+
+
+wezterm.on(
+    'format-tab-title',
+    function(tab)
+        return {
+            { Text = ' ' .. tab.tab_index+1 .. ' ' },
+        }
+    end
+)
 
 return config

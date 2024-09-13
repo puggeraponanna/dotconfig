@@ -38,7 +38,7 @@ require('lazy').setup({
         { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
         { 'norcalli/nvim-colorizer.lua' },
-        { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+        { "rose-pine/neovim",                 name = "rose-pine" },
         { "nvim-tree/nvim-tree.lua",          lazy = false },
         {
             "folke/noice.nvim",
@@ -83,10 +83,10 @@ require('lazy').setup({
     })
 
 -- Colorscheme
-require("catppuccin").setup({
-    transparent_background = true,
+require("rose-pine").setup({
+    variant = "moon",
 })
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("rose-pine")
 
 -- Neodev
 require('neodev').setup()

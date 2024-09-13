@@ -4,3 +4,5 @@ nvim/lazy-lock.json
 containers
 .DS_Store
 deluge*
+joplin-desktop
+gtk*
