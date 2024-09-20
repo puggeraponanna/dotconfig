@@ -47,23 +47,17 @@ config.keys = {
                 act.InputSelector {
                     action = wezterm.action_callback(
                         function(inner_window, inner_pane, id, label)
-                            if not id and not label then
-                                wezterm.log_info 'cancelled'
-                            else
-                                wezterm.log_info('id = ' .. id)
-                                wezterm.log_info('label = ' .. label)
-                                inner_window:perform_action(
-                                    act.SwitchToWorkspace {
-                                        name = label,
-                                        spawn = {
-                                            label = label,
-                                            cwd = id,
-                                            args = { "nvim", "." }
-                                        },
+                            inner_window:perform_action(
+                                act.SwitchToWorkspace {
+                                    name = label,
+                                    spawn = {
+                                        label = label,
+                                        cwd = id,
+                                        args = { "nvim", "." }
                                     },
-                                    inner_pane
-                                )
-                            end
+                                },
+                                inner_pane
+                            )
                         end
                     ),
                     title = 'Choose Workspace',
@@ -94,12 +88,11 @@ function DirLookup(dir)
     return t
 end
 
-
 wezterm.on(
     'format-tab-title',
     function(tab)
         return {
-            { Text = ' ' .. tab.tab_index+1 .. ' ' },
+            { Text = ' ' .. tab.tab_index + 1 .. ' ' },
         }
     end
 )

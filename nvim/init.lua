@@ -32,10 +32,8 @@ require('lazy').setup({
         { 'saadparwaiz1/cmp_luasnip' },
         { 'nvim-tree/nvim-web-devicons' },
         { 'windwp/nvim-autopairs',            event = "InsertEnter",         opts = {} },
-        { 'christoomey/vim-tmux-navigator' },
         { 'nvim-neorg/neorg',                 build = ":Neorg sync-parsers", },
         { 'lewis6991/gitsigns.nvim' },
-        { 'numToStr/Comment.nvim' },
         { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
         { 'norcalli/nvim-colorizer.lua' },
         { "rose-pine/neovim",                 name = "rose-pine" },
@@ -162,11 +160,6 @@ require("lualine").setup({
         section_separators = "",
         component_separators = "|"
     },
-    tabline = {
-        lualine_a = {
-            { 'buffers', separator = { left = "", right = "" } },
-        },
-    }
 })
 
 -- Treesitter
@@ -225,9 +218,6 @@ require("noice").setup({
         lsp_doc_border = false,
     },
 })
-
--- Comment
-require('Comment').setup()
 
 -- Rest
 require("rest-nvim").setup({
