@@ -37,7 +37,6 @@ config.keys = {
     { key = 'v', mods = 'LEADER', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = 'w', mods = 'LEADER', action = wezterm.action.PaneSelect },
     { key = 's', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
-    { key = 'r', mods = 'LEADER', action = wezterm.run_child_process { 'zsh', '$HOME/.config/wezterm/scripts/switchws.sh' } },
     {
         key = 'e',
         mods = 'LEADER',
