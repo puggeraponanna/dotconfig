@@ -1,23 +1,25 @@
 #!/usr/bin/env sh
 
 
-selected=$(find ~/Workspace -maxdepth 1 -type d | fzf)
+selected=$(fd --type d --max-depth 1 . "$HOME/Workspace/" | xargs realpath | sed "s|$HOME/Workspace/||" | fzf --preview 'eza --tree --color=always $HOME/Workspace/{} | head -200' --layout reverse --border)
+
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+selected_path="$HOME/Workspace/$selected"
+
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+    tmux new-session -s $selected -c $selected_path
     exit 0
 fi
 
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+if ! tmux has-session -t=$selected 2> /dev/null; then
+    tmux new-session -ds $selected -c $selected_path
 fi
 
-tmux switch-client -t $selected_name
+tmux switch-client -t $selected

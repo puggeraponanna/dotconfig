@@ -20,8 +20,9 @@ require('lazy').setup({
         { 'williamboman/mason.nvim' },
         { 'puggeraponanna/null-ls.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
-        { 'nvim-treesitter/nvim-treesitter',  build = ':TSUpdate' },
-        { 'nvim-telescope/telescope.nvim',    tag = '0.1.2' },
+        { 'nvim-treesitter/nvim-treesitter',          build = ':TSUpdate' },
+        { 'nvim-telescope/telescope.nvim',            tag = '0.1.2' },
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-lualine/lualine.nvim' },
         { 'hrsh7th/nvim-cmp' },
@@ -31,13 +32,14 @@ require('lazy').setup({
         { 'L3MON4D3/LuaSnip' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'nvim-tree/nvim-web-devicons' },
-        { 'windwp/nvim-autopairs',            event = "InsertEnter",         opts = {} },
-        { 'nvim-neorg/neorg',                 build = ":Neorg sync-parsers", },
+        { 'windwp/nvim-autopairs',                    event = "InsertEnter",                                                                         opts = {} },
+        { 'nvim-neorg/neorg',                         build = ":Neorg sync-parsers", },
         { 'lewis6991/gitsigns.nvim' },
-        { 'puggeraponanna/rest.nvim',         commit = "3db3eed" },
+        { 'puggeraponanna/rest.nvim',                 commit = "3db3eed" },
         { 'norcalli/nvim-colorizer.lua' },
-        { "rose-pine/neovim",                 name = "rose-pine" },
-        { "nvim-tree/nvim-tree.lua",          lazy = false },
+        { "rose-pine/neovim",                         name = "rose-pine" },
+        { "nvim-tree/nvim-tree.lua",                  lazy = false },
+        { 'Exafunction/codeium.vim',                  event = 'BufEnter' },
         {
             "folke/noice.nvim",
             event = "VeryLazy",
@@ -167,6 +169,19 @@ require("nvim-treesitter.configs").setup {
     ensure_installed = { "lua", "vim", "vimdoc", "query", "go", "haskell", "python", "rust" },
     highlight = { enable = true },
 }
+
+require('telescope').setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
+}
+require('telescope').load_extension('fzf')
 
 -- Neorg
 require("neorg").setup {

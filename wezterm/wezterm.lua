@@ -37,6 +37,7 @@ config.keys = {
     { key = 'v', mods = 'LEADER', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = 'w', mods = 'LEADER', action = wezterm.action.PaneSelect },
     { key = 's', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
+    { key = 'r', mods = 'LEADER', action = wezterm.run_child_process { 'zsh', '$HOME/.config/wezterm/scripts/switchws.sh' } },
     {
         key = 'e',
         mods = 'LEADER',
@@ -96,5 +97,21 @@ wezterm.on(
         }
     end
 )
+
+wezterm.on('user-var-changed', function(window, pane, name, value)
+    if name == 'switch-workspace' then
+        local cmd_context = wezterm.json_parse(value)
+        window:perform_action(
+            act.SwitchToWorkspace {
+                name = cmd_context.workspace,
+                spawn = {
+                    cwd = cmd_context.cwd,
+                },
+            },
+            pane
+        )
+    end
+end)
+
 
 return config
