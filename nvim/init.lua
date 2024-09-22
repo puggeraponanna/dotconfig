@@ -84,7 +84,10 @@ require('lazy').setup({
 
 -- Colorscheme
 require("rose-pine").setup({
-    variant = "moon",
+    variant = "main",
+    styles = {
+        transparency = true
+    }
 })
 vim.cmd.colorscheme("rose-pine")
 
@@ -160,7 +163,8 @@ end
 require("lualine").setup({
     options = {
         section_separators = "",
-        component_separators = "|"
+        component_separators = "|",
+        icons_enabled = false,
     },
 })
 
@@ -215,13 +219,16 @@ require("gitsigns").setup {
     end
 }
 
--- Notify
-require("notify").setup({
-    background_colour = "#000000"
-})
 
 -- Noice
 require("noice").setup({
+    views = {
+        mini = {
+            win_options = {
+                winblend = 0
+            }
+        },
+    },
     lsp = {
         override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
