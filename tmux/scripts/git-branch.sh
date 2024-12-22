@@ -10,18 +10,19 @@ fi
 
 current_branch=$(git branch --show-current)
 
-if [ $current_branch != "master" ]; then
-    echo "do this from the master branch you idiot"
-    exit 0
-fi
-
-selected=$(git branch -r | fzf)
+selected=$(git branch -r | sed "s|.*origin/||" | fzf)
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+exists=$(git worktree list --porcelain | rg worktrees | rg $selected)
 
+project_root=$(git worktree list --porcelain | rg worktrees | rg -v worktrees | sed "s|.*/User|/User|")
 
-echo $selected
+if [[ -z $exists ]]; then
+    mkdir -p $project_root/worktrees
+    git worktree add $project_root/worktrees/$selected $selected
+fi
+
+tmux new-window -n $selected -c $project_root/worktrees/$selected
