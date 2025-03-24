@@ -18,7 +18,7 @@ fi
 
 exists=$(git worktree list --porcelain | rg worktrees | rg $selected)
 
-project_root=$(git worktree list --porcelain | rg worktrees | rg -v worktrees | sed "s|.*/User|/User|")
+project_root=$(git worktree list --porcelain | rg worktree | rg -v worktrees | sed "s|.*/User|/User|")
 
 if [[ -z $exists ]]; then
     mkdir -p $project_root/worktrees

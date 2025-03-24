@@ -1,26 +1,11 @@
--- return {
---   "rose-pine/neovim",
---   name = "rose-pine",
---   config = function()
---     vim.cmd("colorscheme rose-pine")
---   end
--- }
---
--- return {
---   {
---     "ellisonleao/gruvbox.nvim",
---     config = function()
---       vim.cmd.colorscheme("gruvbox")
---     end
---   }
--- }
---
 return {
-  'sainnhe/gruvbox-material',
-  lazy = false,
+  "catppuccin/nvim",
+  name = "catppuccin",
   priority = 1000,
   config = function()
-    vim.g.gruvbox_material_enable_italic = true
-    vim.cmd.colorscheme('gruvbox-material')
+    require("catppuccin").setup({
+      transparent_background = true,
+    })
+    vim.cmd.colorscheme("catppuccin")
   end
 }

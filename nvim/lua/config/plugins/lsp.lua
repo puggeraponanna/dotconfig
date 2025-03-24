@@ -1,3 +1,15 @@
+local on_attach = function(_, bufnr)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr })
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+  vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { buffer = bufnr })
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = bufnr })
+  vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, { buffer = bufnr })
+end
+
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -17,7 +29,10 @@ return {
     config = function()
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      require("lspconfig").lua_ls.setup { capabilities = capabilities }
+      require("lspconfig").lua_ls.setup { capabilities = capabilities, on_attach = on_attach }
+      require("lspconfig").rust_analyzer.setup { capabilities = capabilities, on_attach = on_attach }
+      require("lspconfig").gopls.setup { capabilities = capabilities, on_attach = on_attach }
+      require('lspconfig').pyright.setup {}
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
