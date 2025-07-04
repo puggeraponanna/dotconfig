@@ -18,7 +18,11 @@ eval "$(fzf --zsh)"
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--tmux 80% --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a --color=border:#313244,label:#cdd6f4"
+export FZF_DEFAULT_OPTS="--tmux 80% --color=fg:#908caa,bg:#191724,hl:#ebbcba
+	--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+	--color=border:#403d52,header:#31748f,gutter:#191724
+	--color=spinner:#f6c177,info:#9ccfd8
+	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 _fzf_compgen_path() {
   fd --hidden --exclude ".git" . "$1"
 }
@@ -50,3 +54,8 @@ eval "$(starship init zsh)"
 
 # Completions
 autoload -Uz compinit && compinit
+
+if [ -z "$TMUX" ]
+then
+	tmux attach -t scratch || tmux new -s scratch
+fi

@@ -28,16 +28,29 @@ return {
     },
     config = function()
       local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      require("lspconfig").lua_ls.setup { capabilities = capabilities, on_attach = on_attach }
-      require("lspconfig").rust_analyzer.setup { capabilities = capabilities, on_attach = on_attach }
-      require("lspconfig").gopls.setup { capabilities = capabilities, on_attach = on_attach }
-      require('lspconfig').pyright.setup {}
+      lsp_servers = {
+        "bashls",
+        "jsonls",
+        "lua_ls",
+        "rust_analyzer",
+        "gopls",
+        "pyright"
+      }
+      for _, server in ipairs(lsp_servers) do
+        require("lspconfig")[server].setup {
+          capabilities = capabilities,
+          on_attach = on_attach
+        }
+      end
+      -- require("lspconfig").lua_ls.setup { capabilities = capabilities, on_attach = on_attach }
+      -- require("lspconfig").rust_analyzer.setup { capabilities = capabilities, on_attach = on_attach }
+      -- require("lspconfig").gopls.setup { capabilities = capabilities, on_attach = on_attach }
+      -- require("lspconfig").pyright.setup { capabilities = capabilities, on_attach = on_attach }
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
-          if client.supports_method('textDocument/formatting') then
+          if client.supports_method('textDocument/formatting', args.buf) then
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = args.buf,
               callback = function()
