@@ -1,5 +1,6 @@
 export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm@12/bin:$PATH"
 

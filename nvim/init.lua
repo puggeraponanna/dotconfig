@@ -15,7 +15,6 @@ set.scrolloff = 8
 set.background = "dark"
 
 local kmap = vim.keymap.set
-kmap something
 kmap("i", "jj", "<Esc>")
 kmap("n", ";", ":")
 kmap("n", "<space><space>x", "<cmd>source %<CR>")
@@ -24,4 +23,3 @@ kmap("v", "<space>x", ":lua<CR>")
 kmap("n", "<tab>", ":bn<CR>", { silent = true })
 kmap("n", "<S-tab>", ":bp<CR>", { silent = true })
 
-skjebfj
