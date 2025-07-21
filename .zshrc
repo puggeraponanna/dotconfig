@@ -1,18 +1,9 @@
-export PATH="$HOME/.ghcup/bin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
-
-export PATH="/opt/homebrew/opt/llvm@12/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+ 
+export EDITOR=nvim
+export VISUAL=nvim
 
 alias vim=nvim
-export EDITOR=nvim
-
-# opam configuration
-[[ ! -r /Users/ponanna/.opam/opam-init/init.zsh ]] || source /Users/ponanna/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3
 
 # fzf configurations
 eval "$(fzf --zsh)"
@@ -58,5 +49,8 @@ autoload -Uz compinit && compinit
 
 if [ -z "$TMUX" ]
 then
-	tmux attach -t scratch || tmux new -s scratch
+	tmux attach -t default || tmux new -s default
 fi
+
+# rust to path
+export PATH="$(brew --prefix rustup)/bin:$PATH"
