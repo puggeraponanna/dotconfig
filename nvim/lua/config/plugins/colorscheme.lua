@@ -1,7 +1,10 @@
 return {
-  "rose-pine/neovim",
-  name = "rose-pine",
+  'sainnhe/gruvbox-material',
+  lazy = false,
+  priority = 1000,
   config = function()
-    vim.cmd.colorscheme("rose-pine")
+    vim.g.gruvbox_material_enable_italic = true
+    vim.g.gruvbox_material_background = "hard"
+    vim.cmd.colorscheme('gruvbox-material')
   end
 }

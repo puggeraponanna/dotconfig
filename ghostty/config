@@ -1,0 +1,5 @@
+theme = GruvBoxDarkhard
+
+shell-integration-features = no-cursor
+cursor-style = underline
+cursor-style-blink = false

@@ -1,5 +1,3 @@
-require("config.lazy")
-
 local set = vim.opt
 set.shiftwidth = 4
 set.tabstop = 4
@@ -14,6 +12,8 @@ set.completeopt = { "menu", "menuone", "noselect" }
 set.scrolloff = 8
 set.background = "dark"
 
+require("config.lazy")
+
 local kmap = vim.keymap.set
 kmap("i", "jj", "<Esc>")
 kmap("n", ";", ":")
@@ -22,4 +22,3 @@ kmap("n", "<space>x", ":.lua<CR>")
 kmap("v", "<space>x", ":lua<CR>")
 kmap("n", "<tab>", ":bn<CR>", { silent = true })
 kmap("n", "<S-tab>", ":bp<CR>", { silent = true })
-
