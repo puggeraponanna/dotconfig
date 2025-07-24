@@ -1,5 +1,7 @@
 theme = GruvBoxDarkhard
 
+font-family = "JetBrainsMono Nerd Font"
+
 shell-integration-features = no-cursor
 cursor-style = underline
 cursor-style-blink = false

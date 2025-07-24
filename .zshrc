@@ -10,7 +10,7 @@ eval "$(fzf --zsh)"
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--tmux 80% --color=fg:#bdae93,bg:#1d2021,hl:#83a598
+export FZF_DEFAULT_OPTS="--color=fg:#bdae93,bg:#1d2021,hl:#83a598
 	--color=fg+:#ebdbb2,bg+:#bdae93,hl+:#83a598
 	--color=border:#403d52,header:#83a598,gutter:#191724
 	--color=spinner:#8ec07c,info:#fabd2f
@@ -46,11 +46,6 @@ eval "$(starship init zsh)"
 
 # Completions
 autoload -Uz compinit && compinit
-
-if [ -z "$TMUX" ]
-then
-	tmux attach -t default || tmux new -s default
-fi
 
 # rust to path
 export PATH="$(brew --prefix rustup)/bin:$PATH"
