@@ -49,3 +49,7 @@ autoload -Uz compinit && compinit
 
 # rust to path
 export PATH="$(brew --prefix rustup)/bin:$PATH"
+
+# haskell to path
+export PATH="$HOME/.ghcup/bin:$PATH"
+

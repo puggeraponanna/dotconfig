@@ -6,3 +6,8 @@ containers
 deluge*
 joplin-desktop
 gtk*
+configstore
+zellij
+cabal
+github-copilot
+iterm2
