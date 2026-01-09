@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local set = vim.opt
 set.shiftwidth = 4
 set.tabstop = 4
@@ -22,3 +25,13 @@ kmap("n", "<space>x", ":.lua<CR>")
 kmap("v", "<space>x", ":lua<CR>")
 kmap("n", "<tab>", ":bn<CR>", { silent = true })
 kmap("n", "<S-tab>", ":bp<CR>", { silent = true })
+kmap("n", "<leader>q", function()
+  local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+  if qf_winid > 0 then
+    vim.cmd("cclose")
+  else
+    vim.diagnostic.setqflist()
+    vim.cmd("copen")
+  end
+end)
+kmap("n", "<leader>nt", ":NvimTreeToggle<CR>")

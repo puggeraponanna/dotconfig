@@ -36,7 +36,7 @@ local function my_sp_term(opts)
 
   -- Open the window
   local win = vim.api.nvim_open_win(buf, true, win_opts)
-  vim.api.nvim_win_set_option(win, "winhighlight", "Normal:MyHighlight,FloatBorder:MyHighlight")
+  vim.api.nvim_set_option_value("winhighlight", "Normal:MyHighlight,FloatBorder:MyHighlight", { win = win })
 
   -- Return the buffer and window handle
   return { buf = buf, win = win }

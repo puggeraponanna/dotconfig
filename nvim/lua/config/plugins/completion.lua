@@ -8,9 +8,11 @@ return {
       keymap = {
         preset = 'default',
         ['C-y'] = {},
-        ['<tab>'] = { 'accept', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
         ['<esc>'] = { 'hide', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
         ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Tab>'] = { 'select_next', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
       },
       appearance = {
@@ -18,7 +20,12 @@ return {
         nerd_font_variant = 'mono'
       },
 
-      signature = { enabled = true }
+      signature = { enabled = true },
+      completion = {
+        list = {
+          selection = { auto_insert = false, preselect = false },
+        },
+      },
     },
   }
 }

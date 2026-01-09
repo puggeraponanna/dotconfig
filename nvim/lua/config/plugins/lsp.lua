@@ -16,46 +16,39 @@ return {
     dependencies = {
       {
         "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
+        ft = "lua",
         opts = {
           library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           },
         },
       }
     },
     config = function()
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-      lsp_servers = {
+      local lsp_servers = {
         "bashls",
         "jsonls",
         "lua_ls",
         "rust_analyzer",
         "gopls",
         "pyright",
-        "hls"
+        "hls",
+        "zls"
       }
+
       for _, server in ipairs(lsp_servers) do
-        require("lspconfig")[server].setup {
-          capabilities = capabilities,
-          on_attach = on_attach
-        }
+        vim.lsp.enable(server)
       end
-      vim.api.nvim_create_autocmd('LspAttach', {
+
+      vim.lsp.config("*", {
+        on_attach = on_attach,
+      })
+
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('LspFormattingGroup', { clear = true }),
         callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client then return end
-          if client.supports_method('textDocument/formatting', args.buf) then
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = args.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-              end
-            })
-          end
-        end
+          vim.lsp.buf.format({ bufnr = args.buf, async = false })
+        end,
       })
     end
   }
