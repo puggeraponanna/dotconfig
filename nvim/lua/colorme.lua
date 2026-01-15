@@ -2,20 +2,20 @@
 local flavors = {
   colorme = {
     background = "dark", -- "light" or "dark"
-    base = "#282c34",
-    text = "#abb2bf",
-    surface0 = "#3e4452",
-    overlay0 = "#5c6370",
-    blue = "#61afef",
-    magenta = "#c678dd",
-    cyan = "#56b6c2",
-    green = "#98c379",
-    yellow = "#e5c07b",
-    red = "#e06c75",
-    maroon = "#e06c75",
-    teal = "#56b6c2",
-    sky = "#61afef",
-    pink = "#c678dd",
+    base = "#232136",
+    text = "#e0def4",
+    surface0 = "#2a273f",
+    overlay0 = "#6e6a86",
+    blue = "#c4a7e7",
+    magenta = "#ea9a97",
+    cyan = "#9ccfd8",
+    green = "#3e8fb0",
+    yellow = "#f6c177",
+    red = "#eb6f92",
+    maroon = "#eb6f92",
+    teal = "#9ccfd8",
+    sky = "#c4a7e7",
+    pink = "#ea9a97",
   }
 }
 
