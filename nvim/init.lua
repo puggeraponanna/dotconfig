@@ -35,3 +35,4 @@ kmap("n", "<leader>q", function()
   end
 end)
 kmap("n", "<leader>nt", ":NvimTreeToggle<CR>")
+vim.cmd.colorscheme("colorme")
