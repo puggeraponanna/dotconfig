@@ -2,20 +2,20 @@
 local flavors = {
   colorme = {
     background = "dark", -- "light" or "dark"
-    base = "#282828",
-    text = "#ebdbb2",
-    surface0 = "#504945",
-    overlay0 = "#928374",
-    blue = "#458588",
-    magenta = "#b16286",
-    cyan = "#689d6a",
-    green = "#98971a",
-    yellow = "#d79921",
-    red = "#cc241d",
-    maroon = "#fb4934",
-    teal = "#8ec07c",
-    sky = "#83a598",
-    pink = "#d3869b",
+    base = "#282c34",
+    text = "#abb2bf",
+    surface0 = "#3e4452",
+    overlay0 = "#5c6370",
+    blue = "#61afef",
+    magenta = "#c678dd",
+    cyan = "#56b6c2",
+    green = "#98c379",
+    yellow = "#e5c07b",
+    red = "#e06c75",
+    maroon = "#e06c75",
+    teal = "#56b6c2",
+    sky = "#61afef",
+    pink = "#c678dd",
   }
 }
 
@@ -89,6 +89,46 @@ local groups = {
   DiffChange = { fg = cp.base, bg = cp.yellow },
   DiffDelete = { fg = cp.base, bg = cp.red },
   DiffText = { fg = cp.base, bg = cp.blue },
+
+  -- Diagnostics
+  DiagnosticError = { fg = cp.red },
+  DiagnosticWarn = { fg = cp.yellow },
+  DiagnosticInfo = { fg = cp.sky },
+  DiagnosticHint = { fg = cp.teal },
+  DiagnosticUnderlineError = { sp = cp.red, underline = true },
+  DiagnosticUnderlineWarn = { sp = cp.yellow, underline = true },
+  DiagnosticUnderlineInfo = { sp = cp.sky, underline = true },
+  DiagnosticUnderlineHint = { sp = cp.teal, underline = true },
+
+  -- NvimTree
+  NvimTreeNormal = { fg = cp.text, bg = bg },
+  NvimTreeNormalNC = { fg = cp.text, bg = bg },
+  NvimTreeRootFolder = { fg = cp.blue, bold = true },
+  NvimTreeGitDirty = { fg = cp.yellow },
+  NvimTreeGitNew = { fg = cp.green },
+  NvimTreeGitDeleted = { fg = cp.red },
+  NvimTreeSpecialFile = { fg = cp.magenta, underline = true },
+  NvimTreeIndentMarker = { fg = cp.surface0 },
+  NvimTreeImageFile = { fg = cp.pink },
+  NvimTreeSymlink = { fg = cp.cyan },
+  NvimTreeFolderName = { fg = cp.blue },
+  NvimTreeOpenedFolderName = { fg = cp.blue, italic = true },
+  NvimTreeEmptyFolderName = { fg = cp.overlay0 },
+  NvimTreeWindowPicker = { fg = cp.text, bg = cp.surface0, bold = true },
+
+  -- lazy.nvim
+  LazyNormal = { fg = cp.text, bg = bg },
+  LazyButton = { bg = cp.surface0 },
+  LazyButtonActive = { bg = cp.overlay0, bold = true },
+  LazySpecial = { fg = cp.blue },
+  LazyDir = { fg = cp.sky },
+  LazyUrl = { fg = cp.blue },
+  LazyCommit = { fg = cp.green },
+  LazyNoDiff = { fg = cp.overlay0 },
+  LazyH1 = { fg = cp.blue, bg = cp.surface0, bold = true },
+  LazyH2 = { fg = cp.blue, bold = true },
+  LazyProgressDone = { fg = cp.blue },
+  LazyProgressTodo = { fg = cp.overlay0 },
 }
 
 for group, hl in pairs(groups) do
