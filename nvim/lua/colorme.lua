@@ -1,6 +1,7 @@
 -- Neovim colorscheme (Catppuccin-style organization)
 local flavors = {
   colorme = {
+    background = "dark", -- "light" or "dark"
     base = "#282828",
     text = "#ebdbb2",
     surface0 = "#504945",
@@ -26,6 +27,7 @@ local bg = transparent and "NONE" or cp.base
 
 vim.cmd("highlight clear")
 vim.o.termguicolors = true
+vim.o.background = cp.background or "dark"
 vim.g.colors_name = "colorme"
 
 local groups = {
