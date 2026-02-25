@@ -49,6 +49,9 @@ export PATH="$(brew --prefix rustup)/bin:$PATH"
 # haskell to path
 export PATH="$HOME/.ghcup/bin:$PATH"
 
+# go bin to path
+export PATH="$HOME/go/bin:$PATH"
+
 
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

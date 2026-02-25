@@ -10,15 +10,16 @@ fi
 tmux_running=$(pgrep tmux)
 
 selected_path="$HOME/Workspace/$selected"
+session_name=$(echo "$selected" | tr '.' '_')
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected -c $selected_path -n main
+    tmux new-session -s "$session_name" -c "$selected_path" -n main
     exit 0
 fi
 
 
-if ! tmux has-session -t=$selected 2> /dev/null; then
-    tmux new-session -ds $selected -c $selected_path -n main
+if ! tmux has-session -t="$session_name" 2> /dev/null; then
+    tmux new-session -ds "$session_name" -c "$selected_path" -n main
 fi
 
-tmux switch-client -t $selected
+tmux switch-client -t "$session_name"

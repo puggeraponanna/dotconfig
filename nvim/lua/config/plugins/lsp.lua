@@ -33,7 +33,8 @@ return {
         "gopls",
         "pyright",
         "hls",
-        "zls"
+        "zls",
+        "ts_ls"
       }
 
       for _, server in ipairs(lsp_servers) do
