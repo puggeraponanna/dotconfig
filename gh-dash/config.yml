@@ -1,1 +1,23 @@
-/Users/ponanna/Workspace/dotconfig/gh-dash/config.yml
+# gh-dash Atom One Dark Theme Config
+theme:
+  ui:
+    table:
+      showSeparator: true
+    colors:
+      foreground: "#abb2bf"
+      background: "#21252a"
+      active: "#e5c07b"
+      inactive: "#3e4452"
+  text:
+    primary: "#abb2bf"
+    secondary: "#5c6370"
+    success: "#98c379"
+    error: "#e06c75"
+    warning: "#d19a66"
+    link: "#61afef"
+  colors:
+    status:
+      merged: "#c678dd"
+      closed: "#e06c75"
+      open: "#98c379"
+      draft: "#5c6370"
