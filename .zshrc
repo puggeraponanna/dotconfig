@@ -10,11 +10,11 @@ eval "$(fzf --zsh)"
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--color=fg:#bdae93,bg:#1d2021,hl:#83a598
-	--color=fg+:#ebdbb2,bg+:#bdae93,hl+:#83a598
-	--color=border:#403d52,header:#83a598,gutter:#191724
-	--color=spinner:#8ec07c,info:#fabd2f
-	--color=pointer:#8ec07c,marker:#8ec07c,prompt:#fabd2f"
+export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#21252a,hl:#61afef
+	--color=fg+:#abb2bf,bg+:#3e4452,hl+:#61afef
+	--color=border:#3e4452,header:#98c379,gutter:#21252a
+	--color=spinner:#98c379,info:#e5c07b
+	--color=pointer:#e5c07b,marker:#e06c75,prompt:#c678dd"
 _fzf_compgen_path() {
   fd --hidden --exclude ".git" . "$1"
 }
@@ -55,4 +55,4 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 
 
 # Added by Antigravity
-export PATH="/Users/ponanna/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

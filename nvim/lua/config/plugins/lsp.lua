@@ -12,6 +12,34 @@ end
 
 return {
   {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    opts = {},
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "bashls",
+          "jsonls",
+          "yamlls",
+          "lua_ls",
+          "ts_ls",
+          "rust_analyzer",
+          "gopls",
+          "pyright",
+          "zls",
+        },
+        automatic_installation = true,
+      })
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
@@ -22,18 +50,23 @@ return {
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           },
         },
-      }
+      },
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
     },
     config = function()
       local lsp_servers = {
         "bashls",
         "jsonls",
+        "yamlls",
         "lua_ls",
+        "ts_ls",
         "rust_analyzer",
         "gopls",
         "pyright",
-        "hls",
-        "zls"
+        -- "nixd",
+        -- "hls",
+        "zls",
       }
 
       for _, server in ipairs(lsp_servers) do

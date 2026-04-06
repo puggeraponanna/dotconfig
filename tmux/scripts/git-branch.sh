@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
+[ -f $HOME/.zshrc ] && . $HOME/.zshrc
 
 
 tmux_running=$(pgrep tmux)

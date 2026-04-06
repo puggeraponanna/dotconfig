@@ -1,11 +1,19 @@
 return {
-  'sainnhe/gruvbox-material',
+  'navarasu/onedark.nvim',
   lazy = false,
   priority = 1000,
   config = function()
-    vim.g.gruvbox_material_enable_italic = true
-    vim.g.gruvbox_material_background = "hard"
-    vim.g.gruvbox_material_transparent_background = 2
-    vim.cmd.colorscheme('gruvbox-material')
+    require('onedark').setup {
+      style = 'dark',
+      transparent = true,
+      code_style = {
+        comments = 'italic',
+        keywords = 'none',
+        functions = 'none',
+        strings = 'none',
+        variables = 'none'
+      },
+    }
+    require('onedark').load()
   end
 }

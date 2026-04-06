@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
+[ -f $HOME/.zshrc ] && . $HOME/.zshrc
 
 
 selected=$(fd --type d --max-depth 1 . "$HOME/Workspace/" | xargs realpath | sed "s|$HOME/Workspace/||" | fzf --preview 'eza --tree --color=always $HOME/Workspace/{} | head -200')
