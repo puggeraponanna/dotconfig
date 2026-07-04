@@ -10,11 +10,11 @@ eval "$(fzf --zsh)"
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--color=fg:#abb2bf,bg:#21252a,hl:#61afef
-	--color=fg+:#abb2bf,bg+:#3e4452,hl+:#61afef
-	--color=border:#3e4452,header:#98c379,gutter:#21252a
-	--color=spinner:#98c379,info:#e5c07b
-	--color=pointer:#e5c07b,marker:#e06c75,prompt:#c678dd"
+export FZF_DEFAULT_OPTS="--color=fg:-1,bg:-1,hl:blue
+	--color=fg+:-1:reverse,bg+:-1:reverse,hl+:blue:reverse
+	--color=border:black,header:green,gutter:-1
+	--color=spinner:green,info:yellow
+	--color=pointer:yellow,marker:red,prompt:magenta"
 _fzf_compgen_path() {
   fd --hidden --exclude ".git" . "$1"
 }
