@@ -1,19 +1,18 @@
 return {
-  'navarasu/onedark.nvim',
+  'rose-pine/neovim',
+  name = 'rose-pine',
   lazy = false,
   priority = 1000,
   config = function()
-    require('onedark').setup {
-      style = 'dark',
-      transparent = true,
-      code_style = {
-        comments = 'italic',
-        keywords = 'none',
-        functions = 'none',
-        strings = 'none',
-        variables = 'none'
+    require('rose-pine').setup({
+      variant = 'auto', -- auto, main, moon, or dawn
+      dark_variant = 'main', -- main, moon, or dawn
+      styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
       },
-    }
-    require('onedark').load()
+    })
+    vim.cmd('colorscheme rose-pine')
   end
 }

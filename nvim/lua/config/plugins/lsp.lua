@@ -26,6 +26,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "bashls",
+          "clangd",
           "jsonls",
           "yamlls",
           "lua_ls",
@@ -57,6 +58,7 @@ return {
     config = function()
       local lsp_servers = {
         "bashls",
+        "clangd",
         "jsonls",
         "yamlls",
         "lua_ls",

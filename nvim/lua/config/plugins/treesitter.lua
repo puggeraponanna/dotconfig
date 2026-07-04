@@ -9,6 +9,7 @@ return {
         ignore_install = {},
         modules = {},
         ensure_installed = {
+          "c", "cpp",
           "lua", "vim", "vimdoc",
           "typescript", "tsx", "javascript",
           "go",
