@@ -53,6 +53,8 @@ export PATH="$(brew --prefix rustup)/bin:$PATH"
 # haskell to path
 export PATH="$HOME/.ghcup/bin:$PATH"
 
-
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
