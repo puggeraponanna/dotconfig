@@ -58,3 +58,12 @@ export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # Added by Antigravity IDE
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+bindkey -v
+
+# Reset cursor shape to terminal default on returning to prompt
+_reset_cursor_on_prompt() {
+    printf '\033[ q'
+}
+precmd_functions+=(_reset_cursor_on_prompt)
+
